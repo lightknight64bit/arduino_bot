@@ -11,6 +11,7 @@ class DiffDrive(Node):
         super().__init__("diff_drive")
         self.vel_subscriber = self.create_subscription(Twist, '/cmd_vel', self.convert_to_vel, 10)
         self.ser = serial.Serial('/dev/ttyACM0', 57600)
+        self.get_logger().info("Serial port opened")
 
     def convert_to_vel(self, msg: Twist):
         V_lin = msg.linear.x
